@@ -114,43 +114,36 @@ The final training run improved precision and mean Average Precision compared wi
 
 ---
 
+
 ## 5. Training Results
 
 ### Train5 — Final Model
 
 #### Training Metrics
-
-![Train5 Results](train5/results.png)
+<img src="train5/results.png" width="450" alt="Train5 Training Results">
 
 #### Precision–Recall Curve
-
-![Train5 PR Curve](train5/BoxPR_curve.png)
+<img src="train5/BoxPR_curve.png" width="450" alt="Train5 Precision Recall Curve">
 
 #### F1–Confidence Curve
-
-![Train5 F1 Curve](train5/BoxF1_curve.png)
+<img src="train5/BoxF1_curve.png" width="450" alt="Train5 F1 Curve">
 
 #### Confusion Matrix
-
-![Train5 Confusion Matrix](train5/confusion_matrix.png)
+<img src="train5/confusion_matrix.png" width="450" alt="Train5 Confusion Matrix">
 
 ---
 
 ### Train4 — Previous Model
 
 #### Training Metrics
-
-![Train4 Results](train4/results.png)
+<img src="train4/results.png" width="450" alt="Train4 Training Results">
 
 #### Precision–Recall Curve
-
-![Train4 PR Curve](train4/BoxPR_curve.png)
+<img src="train4/BoxPR_curve.png" width="450" alt="Train4 Precision Recall Curve">
 
 #### Confusion Matrix
+<img src="train4/confusion_matrix.png" width="450" alt="Train4 Confusion Matrix">
 
-![Train4 Confusion Matrix](train4/confusion_matrix.png)
-
----
 
 ## 6. Repository Structure
 
