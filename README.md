@@ -238,10 +238,3 @@ Depending on the local configuration, the model path and camera settings may nee
 **Institution:** Istinye University
 
 **Department:** Computer Engineering
-
----
-
-## 10. Author
-
-**Sude İlhan**  
-Computer Engineering Graduate | Istinye University
