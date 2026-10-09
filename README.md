@@ -14,9 +14,13 @@ The project combines computer vision and deep learning to support automated secu
 - Implemented real-time webcam detection and security alerts.
 - Applied confidence thresholds and frame-based filtering to improve detection stability.
 
-## Technologies
+## 🛠️ Technologies
 
-**Python | YOLOv8 | OpenCV | Ultralytics | Computer Vision**
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![YOLOv8](https://img.shields.io/badge/YOLOv8-00FFFF?style=flat-square&logo=ultralytics&logoColor=black)
+![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
+![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+
 
 ## Detection Classes
 
