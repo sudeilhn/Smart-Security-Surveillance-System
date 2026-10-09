@@ -13,6 +13,8 @@ The project combines computer vision and deep learning to support automated secu
 - Combined and processed datasets from multiple sources.
 - Implemented real-time webcam detection and security alerts.
 - Applied confidence thresholds and frame-based filtering to improve detection stability.
+- Explored Raspberry Pi integration during hardware development, alongside PC-based real-time detection using a USB webcam.
+
 
 ## 🛠️ Technologies
 
@@ -20,6 +22,8 @@ The project combines computer vision and deep learning to support automated secu
 ![YOLOv8](https://img.shields.io/badge/YOLOv8-00FFFF?style=flat-square&logo=ultralytics&logoColor=black)
 ![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
 ![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
+![Raspberry Pi](https://img.shields.io/badge/Raspberry_Pi-A22846?style=flat-square&logo=raspberrypi&logoColor=white)
+
 
 
 ## Detection Classes
