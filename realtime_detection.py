@@ -17,7 +17,7 @@ import threading
 
 # Load trained YOLOv8 model
 # Eğitilmiş YOLOv8 modelini yükle
-model = YOLO("runs/detect/train4/weights/best.pt")
+model = YOLO("best.pt")
 
 # =========================
 # AYARLAR
