@@ -1,99 +1,254 @@
 
 # Smart Security and Surveillance System
 
-A real-time security monitoring system developed as a Computer Engineering capstone project using **YOLOv8 and OpenCV**.
+### Real-Time Object Detection Using YOLOv8 and OpenCV
 
-The system detects people, guns, and knives through a webcam and generates automated alerts when potentially dangerous objects are identified.
+A deep learning-based security and surveillance system developed as a Computer Engineering graduation project at **Istinye University**.
 
-## Project Overview
+The project uses a custom-trained **YOLOv8** model to detect people and potentially dangerous objects in real time through a camera feed. It combines computer vision, object detection, and alert mechanisms to support automated security monitoring.
 
-The project combines computer vision and deep learning to support automated security monitoring.
+---
 
-- Trained a custom YOLOv8 model for three object classes.
-- Combined and processed datasets from multiple sources.
-- Implemented real-time webcam detection and security alerts.
-- Applied confidence thresholds and frame-based filtering to improve detection stability.
-- Explored Raspberry Pi integration during hardware development, alongside PC-based real-time detection using a USB webcam.
+## 1. Project Overview
 
+The system is designed to identify three object classes:
 
-## 🛠️ Technologies
+| Class | Description |
+|-------|-------------|
+| Person | Human detection |
+| Knife | Sharp weapon detection |
+| Gun | Firearm detection |
 
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![YOLOv8](https://img.shields.io/badge/YOLOv8-00FFFF?style=flat-square&logo=ultralytics&logoColor=black)
-![OpenCV](https://img.shields.io/badge/OpenCV-5C3EE8?style=flat-square&logo=opencv&logoColor=white)
-![PyTorch](https://img.shields.io/badge/PyTorch-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)
-![Raspberry Pi](https://img.shields.io/badge/Raspberry_Pi-A22846?style=flat-square&logo=raspberrypi&logoColor=white)
+The application captures video frames, performs object detection, displays bounding boxes and confidence scores, and applies alert logic when a dangerous object is identified.
 
+### Key Features
 
+- Real-time object detection using a webcam
+- Custom YOLOv8 model trained on three object classes
+- Bounding box visualization with confidence scores
+- Detection filtering to reduce unreliable predictions
+- Alert mechanism for potentially dangerous objects
+- Training evaluation through performance metrics and visualizations
 
-## Detection Classes
+---
 
-| Class ID | Object |
-|---|---|
-| 0 | Person |
-| 1 | Gun |
-| 2 | Knife |
+## 2. Technologies and Tools
 
-## Model Performance
+| Technology | Purpose |
+|------------|---------|
+| Python | Main programming language |
+| YOLOv8 | Object detection |
+| PyTorch | Deep learning framework |
+| OpenCV | Real-time video processing |
+| Ultralytics | Model training and inference |
+| Roboflow | Dataset preparation and annotation |
+| NumPy | Numerical processing |
 
-The trained YOLOv8 model was evaluated using object detection metrics.
+---
 
-| Metric | Result |
-|---|---:|
-| Precision | 81.8% |
-| Recall | 65.7% |
-| mAP@50 | 72.7% |
+## 3. System Architecture
 
-### Performance Analysis
-
-- **Precision (81.8%):** Indicates how often predicted detections are correct.
-- **Recall (65.7%):** Measures the proportion of actual objects successfully detected.
-- **mAP@50 (72.7%):** Summarizes detection performance across the three classes at an IoU threshold of 0.50.
-
-The model achieved higher precision than recall, suggesting that reducing missed detections is an important area for improvement.
-
-## Project Structure
+The detection pipeline follows these stages:
 
 ```text
-capstone_project/
-├── best.pt                 # Trained YOLOv8 model
-├── last.pt                 # Final training checkpoint
-├── realtime_detection.py   # Webcam detection and alerts
-├── merge_and_remap.py      # Dataset preparation
-├── merge_extra.py          # Additional data merging
-├── negative_add.py         # Negative sample preparation
-├── data.yaml               # Class configuration
-└── README.md
+                  Camera / Webcam
+                        |
+                        v
+                   Frame Capture
+                        |
+                        v
+                  YOLOv8 Inference
+                        |
+                        v
+                Detection Filtering
+              (Confidence / Box Area)
+                        |
+                        v
+                Frame Stabilization
+                        |
+                        v
+                   Decision Logic
+                        |
+               +--------+--------+
+               |                 |
+               v                 v
+         Normal Object     Dangerous Object
+               |                 |
+               v                 v
+          Visualization      Alert System
 ```
 
-## Getting Started
+The system processes incoming frames and evaluates predictions before determining whether an alert should be generated.
 
-Install the required libraries:
+---
+
+## 4. Dataset and Training
+
+The dataset was assembled from annotated images of people, knives, and guns, using YOLO-compatible annotations.
+
+### Training Process
+
+The project involved multiple training experiments and fine-tuning stages.
+
+Two training runs are included in this repository:
+
+- **Train4:** Previous fine-tuning experiment
+- **Train5:** Final model used for the graduation project
+
+Training was performed in a CPU-based environment.
+
+### Model Evaluation
+
+The recorded validation metrics are summarized below.
+
+| Metric | Train4 | Train5 (Final) |
+|:-------|-------:|---------------:|
+| Precision | 83.05% | **86.3%** |
+| Recall | 66.38% | **66.4%** |
+| mAP@50 | 73.73% | **74.8%** |
+| mAP@50–95 | 46.26% | **47.3%** |
+
+The final training run improved precision and mean Average Precision compared with Train4, while recall remained nearly unchanged.
+
+> These metrics represent validation performance. Results may differ under real-world lighting, camera, and environmental conditions.
+
+---
+
+## 5. Training Results
+
+### Train5 — Final Model
+
+#### Training Metrics
+
+![Train5 Results](train5/results.png)
+
+#### Precision–Recall Curve
+
+![Train5 PR Curve](train5/BoxPR_curve.png)
+
+#### F1–Confidence Curve
+
+![Train5 F1 Curve](train5/BoxF1_curve.png)
+
+#### Confusion Matrix
+
+![Train5 Confusion Matrix](train5/confusion_matrix.png)
+
+---
+
+### Train4 — Previous Model
+
+#### Training Metrics
+
+![Train4 Results](train4/results.png)
+
+#### Precision–Recall Curve
+
+![Train4 PR Curve](train4/BoxPR_curve.png)
+
+#### Confusion Matrix
+
+![Train4 Confusion Matrix](train4/confusion_matrix.png)
+
+---
+
+## 6. Repository Structure
+
+```text
+Smart-Security-and-Surveillance-System/
+|
+|-- README.md
+|-- realtime_detection.py
+|-- requirements.txt
+|-- data.yaml
+|-- best.pt
+|-- last.pt
+|
+|-- merge_and_remap.py
+|-- merge_extra.py
+|-- negative_add.py
+|
+|-- train4/
+|   |-- args.yaml
+|   |-- results.csv
+|   |-- results.png
+|   |-- BoxPR_curve.png
+|   |-- confusion_matrix.png
+|   `-- ...
+|
+`-- train5/
+    |-- args.yaml
+    |-- results.csv
+    |-- results.png
+    |-- BoxPR_curve.png
+    |-- confusion_matrix.png
+    `-- ...
+```
+
+---
+
+## 7. Installation and Usage
+
+### Step 1 — Clone the Repository
 
 ```bash
-pip install ultralytics opencv-python
+git clone https://github.com/sudeilhn/REPOSITORY_NAME.git
+cd REPOSITORY_NAME
 ```
 
-Run real-time detection:
+Replace `REPOSITORY_NAME` with the actual repository name.
+
+### Step 2 — Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### Step 3 — Run Real-Time Detection
 
 ```bash
 python realtime_detection.py
 ```
 
-Ensure that `best.pt` is located in the repository's root directory and that a webcam is connected.
+**Requirements:**
 
-## Future Improvements
+- Python environment with the required dependencies
+- Compatible webcam or camera
+- Trained YOLOv8 model weights
 
-- Improve recall to reduce missed detections.
-- Expand the dataset with more diverse environments.
-- Optimize inference speed for embedded hardware.
-- Evaluate performance under different lighting and camera conditions.
+Depending on the local configuration, the model path and camera settings may need adjustment.
 
 ---
 
-## Author
+## 8. Limitations and Future Improvements
 
-**Sude İlhan** — Computer Engineering Graduate
+### Current Limitations
 
+- Detection performance may decrease under poor lighting.
+- Small or partially hidden objects can be difficult to detect.
+- False positives and missed detections remain possible.
+- Inference speed depends on hardware capabilities.
 
+### Future Improvements
 
+- Expand the dataset with more diverse images.
+- Improve detection reliability in challenging environments.
+- Optimize inference for lower-powered devices.
+- Evaluate performance using additional real-world video scenarios.
+
+---
+
+## 9. Academic Information
+
+**Project:** Object Detection-Based Smart Security and Surveillance System
+
+**Institution:** Istinye University
+
+**Department:** Computer Engineering
+
+---
+
+## 10. Author
+
+**Sude İlhan**  
+Computer Engineering Graduate | Istinye University
